@@ -58,7 +58,6 @@ export function getTasks(project_gid, callback) {
     return http
       .get(config)(state)
       .then(response => {
-        console.log(response);
         const nextState = {
           ...composeNextState(state, response.data),
           response,
@@ -102,7 +101,47 @@ export function updateTask(task_gid, params, callback) {
     return http
       .put(config)(state)
       .then(response => {
-        console.log(response);
+        const nextState = {
+          ...composeNextState(state, response.data),
+          response,
+        };
+        if (callback) return callback(nextState);
+        return nextState;
+      });
+  };
+}
+
+/**
+ * Create a task.
+ * @public
+ * @example
+ * createTask(
+ *  {
+ *    name: 'test', "approval_status": "pending", "assignee": "12345"
+ *  }
+ * )
+ * @function
+ * @param {object} params - Body parameters
+ * @param {function} callback - (Optional) callback function
+ * @returns {Operation}
+ */
+export function createTask(params, callback) {
+  return state => {
+    params = expandReferences(params)(state);
+
+    const { baseUrl, token } = state.configuration;
+
+    const url = `${baseUrl}/tasks/`;
+
+    const config = {
+      url,
+      body: { data: params },
+      headers: { Authorization: `Bearer ${token}` },
+    };
+
+    return http
+      .post(config)(state)
+      .then(response => {
         const nextState = {
           ...composeNextState(state, response.data),
           response,

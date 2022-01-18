@@ -31,6 +31,16 @@ updateTask('12344', {
 });
 ```
 
+## Create a task
+
+```js
+createTask({
+  name: 'test',
+  approval_status: 'pending',
+  assignee: '12345',
+});
+```
+
 ## Development
 
 Clone the repo, run `npm install`.
