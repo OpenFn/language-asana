@@ -117,6 +117,7 @@ export {
   alterState,
   dataPath,
   dataValue,
+  dateFns,
   each,
   field,
   fields,

@@ -21,7 +21,7 @@
     "lib": "./lib"
   },
   "dependencies": {
-    "@openfn/language-common": "^1.6.1",
+    "@openfn/language-common": "^1.6.2",
     "axios": "0.21.4"
   },
   "devDependencies": {
