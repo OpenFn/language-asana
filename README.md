@@ -1,31 +1,34 @@
-# language-template [<img src="https://avatars2.githubusercontent.com/u/9555108?s=200&v=4)" alt="alt text" height="20">](https://www.openfn.org) [![Build Status](https://travis-ci.org/OpenFn/language-template.svg?branch=master)](https://travis-ci.org/OpenFn/language-template)
+# language-asana [![Build Status](https://travis-ci.org/OpenFn/language-asana.svg?branch=master)](https://travis-ci.org/OpenFn/language-asana)
 
-An OpenFn **_adaptor_** for building integration jobs for use with the \_\_\_\_ API.
+Language Pack for connecting with Asana.
 
 ## Documentation
 
-- View the documentation at https://openfn.github.io/adaptor/
-- To update the documentation site, run: `./node_modules/.bin/jsdoc --readme ./README.md ./lib -d docs`
-
-## post
-
-#### sample configuration
+### sample configuration
 
 ```json
 {
-  "username": "taylor@openfn.org",
-  "password": "supersecret"
+  "baseUrl": "https://app.asana.com/api/1.0",
+  "token": "shhhhh"
 }
 ```
 
-#### sample expression using operation
+### Sample expression
+
+## Find the list of tasks of a given project.
 
 ```js
-post({
-  "url": "api/v1/forms/data/wide/json/formId",
-  "body": {"a":1}
-  "headers": {}
-})
+getTasks('22889593722');
+```
+
+## Update a specific task
+
+```js
+updateTask('12344', {
+  name: 'test',
+  approval_status: 'pending',
+  assignee: '12345',
+});
 ```
 
 ## Development
