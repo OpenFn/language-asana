@@ -6,9 +6,6 @@ import {
   http,
 } from '@openfn/language-common';
 
-const { axios } = http;
-exports.axios = axios;
-
 /**
  * Execute a sequence of operations.
  * Wraps `language-common/execute`, and prepends initial state for http.
@@ -36,34 +33,32 @@ export function execute(...operations) {
 }
 
 /**
- * Creates a fictional resource in a fictional destination system using a POST request
+ * Get the list of tasks for a given project.
  * @public
  * @example
- * create("/endpoint", {"foo": "bar"})
+ * getTasks("project_gid")
  * @function
- * @param {string} path - Path to resource
- * @param {object} params - data to create the new resource
+ * @param {string} project_gid - Globally unique identifier for the project
  * @param {function} callback - (Optional) callback function
  * @returns {Operation}
  */
-export function create(path, params, callback) {
+export function getTasks(project_gid, callback) {
   return state => {
-    path = expandReferences(path)(state);
-    params = expandReferences(params)(state);
+    project_gid = expandReferences(project_gid)(state);
 
-    const { baseUrl, username, password } = state.configuration;
+    const { baseUrl, token } = state.configuration;
 
-    const url = `${baseUrl}/${path}`;
-    const auth = { username, password };
+    const url = `${baseUrl}/projects/${project_gid}/tasks`;
 
     const config = {
       url,
-      body: params,
+      headers: { Authorization: `Bearer ${token}` },
     };
 
     return http
-      .post(config)(state)
+      .get(config)(state)
       .then(response => {
+        console.log(response);
         const nextState = {
           ...composeNextState(state, response.data),
           response,
@@ -74,45 +69,6 @@ export function create(path, params, callback) {
   };
 }
 
-/**
- * Create a fictional patient in a fictional universe with a fictional REST api
- * @public
- * @example
- * createPatient({"foo": "bar"})
- * @function
- * @param {object} params - data to create the new resource
- * @param {function} callback - (Optional) callback function
- * @returns {Operation}
- */
-export function createPatient(params, callback) {
-  return state => {
-    params = expandReferences(params)(state);
-
-    const { baseUrl, username, password } = state.configuration;
-
-    const url = `${baseUrl}/patient`;
-    const auth = { username, password };
-
-    const config = {
-      url,
-      body: params,
-      auth,
-    };
-
-    return http
-      .post(config)(state)
-      .then(response => {
-        const nextState = {
-          ...composeNextState(state, response.data),
-          response,
-        };
-        if (callback) return callback(nextState);
-        return nextState;
-      });
-  };
-}
-
-// What functions do you want from the common adaptor?
 export {
   alterState,
   dataPath,
