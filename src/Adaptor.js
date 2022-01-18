@@ -69,6 +69,50 @@ export function getTasks(project_gid, callback) {
   };
 }
 
+/**
+ * Update a specific task.
+ * @public
+ * @example
+ * updateTask("task_gid",
+ *  {
+ *    name: 'test', "approval_status": "pending", "assignee": "12345"
+ *  }
+ * )
+ * @function
+ * @param {string} task_gid - Globally unique identifier for the task
+ * @param {object} params - Body parameters
+ * @param {function} callback - (Optional) callback function
+ * @returns {Operation}
+ */
+export function updateTask(task_gid, params, callback) {
+  return state => {
+    task_gid = expandReferences(task_gid)(state);
+    params = expandReferences(params)(state);
+
+    const { baseUrl, token } = state.configuration;
+
+    const url = `${baseUrl}/tasks/${task_gid}/`;
+
+    const config = {
+      url,
+      body: { data: params },
+      headers: { Authorization: `Bearer ${token}` },
+    };
+
+    return http
+      .put(config)(state)
+      .then(response => {
+        console.log(response);
+        const nextState = {
+          ...composeNextState(state, response.data),
+          response,
+        };
+        if (callback) return callback(nextState);
+        return nextState;
+      });
+  };
+}
+
 export {
   alterState,
   dataPath,
