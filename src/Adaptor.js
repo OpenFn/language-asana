@@ -102,7 +102,7 @@ export function updateTask(task_gid, params, callback) {
 
     const config = {
       url,
-      body: { data: params },
+      data: { data: params },
       headers: { Authorization: `Bearer ${token}` },
     };
 
@@ -143,7 +143,7 @@ export function createTask(params, callback) {
 
     const config = {
       url,
-      body: { data: params },
+      data: { data: params },
       headers: { Authorization: `Bearer ${token}` },
     };
 
@@ -156,6 +156,60 @@ export function createTask(params, callback) {
         };
         if (callback) return callback(nextState);
         return nextState;
+      });
+  };
+}
+
+/**
+ * Update or create a task.
+ * @public
+ * @example
+ * upsertTask(
+ *  {
+ *    "externalId": "name",
+ *    "data": {
+ *      name: 'test', "approval_status": "pending", "assignee": "12345"
+ *    }
+ *
+ *  }
+ * )
+ * @function
+ * @param {string} project_gid - Globally unique identifier for the project
+ * @param {object} params - an object with an externalId and some task data.
+ * @param {function} callback - (Optional) callback function
+ * @returns {Operation}
+ */
+export function upsertTask(project_gid, params, callback) {
+  return state => {
+    project_gid = expandReferences(project_gid)(state);
+    const { externalId, data } = expandReferences(params)(state);
+
+    const { baseUrl, token } = state.configuration;
+
+    const url = `${baseUrl}/projects/${project_gid}/tasks`;
+
+    const config = {
+      url,
+      headers: { Authorization: `Bearer ${token}` },
+      params: {
+        opt_fields: `${externalId}`,
+      },
+    };
+
+    return http
+      .get(config)(state)
+      .then(response => {
+        const matchingTask = response.data.data.find(
+          task => task[externalId] === data[externalId]
+        );
+
+        if (matchingTask) {
+          console.log('Matching task found. Performing update.');
+          return updateTask(matchingTask.gid, data, callback)(state);
+        } else {
+          console.log('No matching task found. Performing create.');
+          return createTask(data, callback)(state);
+        }
       });
   };
 }

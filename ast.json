@@ -178,6 +178,69 @@
         ]
       },
       "valid": true
+    },
+    {
+      "name": "upsertTask",
+      "params": [
+        "project_gid",
+        "params",
+        "callback"
+      ],
+      "docs": {
+        "description": "Update or create a task.",
+        "tags": [
+          {
+            "title": "public",
+            "description": null,
+            "type": null
+          },
+          {
+            "title": "example",
+            "description": "upsertTask(\n {\n   \"externalId\": \"name\",\n   \"data\": {\n     name: 'test', \"approval_status\": \"pending\", \"assignee\": \"12345\"\n   }\n\n }\n)"
+          },
+          {
+            "title": "function",
+            "description": null,
+            "name": null
+          },
+          {
+            "title": "param",
+            "description": "Globally unique identifier for the project",
+            "type": {
+              "type": "NameExpression",
+              "name": "string"
+            },
+            "name": "project_gid"
+          },
+          {
+            "title": "param",
+            "description": "an object with an externalId and some task data.",
+            "type": {
+              "type": "NameExpression",
+              "name": "object"
+            },
+            "name": "params"
+          },
+          {
+            "title": "param",
+            "description": "(Optional) callback function",
+            "type": {
+              "type": "NameExpression",
+              "name": "function"
+            },
+            "name": "callback"
+          },
+          {
+            "title": "returns",
+            "description": null,
+            "type": {
+              "type": "NameExpression",
+              "name": "Operation"
+            }
+          }
+        ]
+      },
+      "valid": true
     }
   ],
   "exports": [],
