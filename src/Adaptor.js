@@ -36,15 +36,20 @@ export function execute(...operations) {
  * Get the list of tasks for a given project.
  * @public
  * @example
- * getTasks("project_gid")
+ * getTasks("project_gid",
+ *  {
+ *    opt_fields: "name,notes,assignee"
+ *  })
  * @function
  * @param {string} project_gid - Globally unique identifier for the project
+ * @param {object} params - Query params to include.
  * @param {function} callback - (Optional) callback function
  * @returns {Operation}
  */
-export function getTasks(project_gid, callback) {
+export function getTasks(project_gid, params, callback) {
   return state => {
     project_gid = expandReferences(project_gid)(state);
+    const { opt_fields } = expandReferences(params)(state);
 
     const { baseUrl, token } = state.configuration;
 
@@ -53,6 +58,9 @@ export function getTasks(project_gid, callback) {
     const config = {
       url,
       headers: { Authorization: `Bearer ${token}` },
+      params: {
+        opt_fields,
+      },
     };
 
     return http

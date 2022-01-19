@@ -4,6 +4,7 @@
       "name": "getTasks",
       "params": [
         "project_gid",
+        "params",
         "callback"
       ],
       "docs": {
@@ -16,7 +17,7 @@
           },
           {
             "title": "example",
-            "description": "getTasks(\"project_gid\")"
+            "description": "getTasks(\"project_gid\",\n {\n   opt_fields: \"name,notes,assignee\"\n })"
           },
           {
             "title": "function",
@@ -31,6 +32,15 @@
               "name": "string"
             },
             "name": "project_gid"
+          },
+          {
+            "title": "param",
+            "description": "Query params to include.",
+            "type": {
+              "type": "NameExpression",
+              "name": "object"
+            },
+            "name": "params"
           },
           {
             "title": "param",

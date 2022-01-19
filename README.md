@@ -18,7 +18,9 @@ Language Pack for connecting with Asana.
 ## Find the list of tasks of a given project.
 
 ```js
-getTasks('22889593722');
+getTasks('22889593722', {
+  opt_fields: 'name,notes,assignee',
+});
 ```
 
 ## Update a specific task
