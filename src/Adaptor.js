@@ -205,6 +205,9 @@ export function upsertTask(project_gid, params, callback) {
 
         if (matchingTask) {
           console.log('Matching task found. Performing update.');
+          // projects and workspace ids should ne be included to update
+          delete data.projects;
+          delete data.workspace;
           return updateTask(matchingTask.gid, data, callback)(state);
         } else {
           console.log('No matching task found. Performing create.');
