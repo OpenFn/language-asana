@@ -43,6 +43,21 @@ createTask({
 });
 ```
 
+## Update a task or create a new one
+You can use a field name as `externalId` to match a specific task. If the task does not exist, 
+a new one will be created.
+
+```js
+upsertTask('12344', {
+  externalId: 'gid',
+  data: {
+    gid: '123456',
+    name: 'A new task',
+    projects: ['12344'],
+  },
+});
+```
+
 ## Development
 
 Clone the repo, run `npm install`.
