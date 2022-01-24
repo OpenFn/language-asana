@@ -1,6 +1,69 @@
 {
   "operations": [
     {
+      "name": "getTask",
+      "params": [
+        "task_gid",
+        "params",
+        "callback"
+      ],
+      "docs": {
+        "description": "Get a single task of a given project.",
+        "tags": [
+          {
+            "title": "public",
+            "description": null,
+            "type": null
+          },
+          {
+            "title": "example",
+            "description": "getTask(\"task_gid\",\n {\n   opt_fields: \"name,notes,assignee\"\n })"
+          },
+          {
+            "title": "function",
+            "description": null,
+            "name": null
+          },
+          {
+            "title": "param",
+            "description": "Globally unique identifier for the task",
+            "type": {
+              "type": "NameExpression",
+              "name": "string"
+            },
+            "name": "task_gid"
+          },
+          {
+            "title": "param",
+            "description": "Query params to include.",
+            "type": {
+              "type": "NameExpression",
+              "name": "object"
+            },
+            "name": "params"
+          },
+          {
+            "title": "param",
+            "description": "(Optional) callback function",
+            "type": {
+              "type": "NameExpression",
+              "name": "function"
+            },
+            "name": "callback"
+          },
+          {
+            "title": "returns",
+            "description": null,
+            "type": {
+              "type": "NameExpression",
+              "name": "Operation"
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
       "name": "getTasks",
       "params": [
         "project_gid",

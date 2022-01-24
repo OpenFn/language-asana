@@ -15,7 +15,15 @@ Language Pack for connecting with Asana.
 
 ### Sample expression
 
-## Find the list of tasks of a given project.
+## Find a single task of a given project using the task id.
+
+```js
+getTask('1234', {
+  opt_fields: 'name,assignee',
+});
+```
+
+## Find the list of tasks of a given project using the project id.
 
 ```js
 getTasks('22889593722', {
@@ -44,8 +52,9 @@ createTask({
 ```
 
 ## Update a task or create a new one
-You can use a field name as `externalId` to match a specific task. If the task does not exist, 
-a new one will be created.
+
+You can use a field name as `externalId` to match a specific task. If the task
+does not exist, a new one will be created.
 
 ```js
 upsertTask('12344', {
