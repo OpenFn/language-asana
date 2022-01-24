@@ -33,6 +33,50 @@ export function execute(...operations) {
 }
 
 /**
+ * Get a single task of a given project.
+ * @public
+ * @example
+ * getTask("task_gid",
+ *  {
+ *    opt_fields: "name,notes,assignee"
+ *  })
+ * @function
+ * @param {string} task_gid - Globally unique identifier for the task
+ * @param {object} params - Query params to include.
+ * @param {function} callback - (Optional) callback function
+ * @returns {Operation}
+ */
+ export function getTask(task_gid, params, callback) {
+  return state => {
+    task_gid = expandReferences(task_gid)(state);
+    const { opt_fields } = expandReferences(params)(state);
+
+    const { baseUrl, token } = state.configuration;
+
+    const url = `${baseUrl}/tasks/${task_gid}`;
+
+    const config = {
+      url,
+      headers: { Authorization: `Bearer ${token}` },
+      params: {
+        opt_fields,
+      },
+    };
+
+    return http
+      .get(config)(state)
+      .then(response => {
+        const nextState = {
+          ...composeNextState(state, response.data),
+          response,
+        };
+        if (callback) return callback(nextState);
+        return nextState;
+      });
+  };
+}
+
+/**
  * Get the list of tasks for a given project.
  * @public
  * @example
