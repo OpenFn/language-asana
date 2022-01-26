@@ -53,8 +53,9 @@ createTask({
 
 ## Update a task or create a new one
 
-You can use a field name as `externalId` to match a specific task. If the task
+You can use a field name literal as `externalId` to match a specific task. If the task
 does not exist, a new one will be created.
+The first parameter in this function should be the `project_id`.
 
 ```js
 upsertTask('12344', {

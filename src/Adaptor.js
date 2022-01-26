@@ -46,7 +46,7 @@ export function execute(...operations) {
  * @param {function} callback - (Optional) callback function
  * @returns {Operation}
  */
- export function getTask(task_gid, params, callback) {
+export function getTask(task_gid, params, callback) {
   return state => {
     task_gid = expandReferences(task_gid)(state);
     const { opt_fields } = expandReferences(params)(state);
@@ -246,9 +246,9 @@ export function upsertTask(project_gid, params, callback) {
         const matchingTask = response.data.data.find(
           task => task[externalId] === data[externalId]
         );
-
         if (matchingTask) {
           console.log('Matching task found. Performing update.');
+          console.log('Data to update', data);
           // projects and workspace ids should ne be included to update
           delete data.projects;
           delete data.workspace;
