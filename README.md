@@ -59,11 +59,11 @@ The first parameter in this function should be the `project_id`.
 
 ```js
 upsertTask('12344', {
-  externalId: 'gid',
+  externalId: 'name',
   data: {
-    gid: '123456',
     name: 'A new task',
     projects: ['12344'],
+    notes: 'This is a new task',
   },
 });
 ```

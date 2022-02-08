@@ -209,6 +209,7 @@ export function createTask(params, callback) {
  * @public
  * @example
  * upsertTask(
+ *  "1201382240880",
  *  {
  *    "externalId": "name",
  *    "data": {
