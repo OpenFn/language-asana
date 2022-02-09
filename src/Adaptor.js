@@ -51,9 +51,9 @@ export function getTask(task_gid, params, callback) {
     task_gid = expandReferences(task_gid)(state);
     const { opt_fields } = expandReferences(params)(state);
 
-    const { baseUrl, token } = state.configuration;
+    const { apiVersion, token } = state.configuration;
 
-    const url = `${baseUrl}/tasks/${task_gid}`;
+    const url = `https://app.asana.com/api/${apiVersion}/tasks/${task_gid}`;
 
     const config = {
       url,
@@ -95,9 +95,9 @@ export function getTasks(project_gid, params, callback) {
     project_gid = expandReferences(project_gid)(state);
     const { opt_fields } = expandReferences(params)(state);
 
-    const { baseUrl, token } = state.configuration;
+    const { apiVersion, token } = state.configuration;
 
-    const url = `${baseUrl}/projects/${project_gid}/tasks`;
+    const url = `https://app.asana.com/api/${apiVersion}/projects/${project_gid}/tasks`;
 
     const config = {
       url,
@@ -140,9 +140,9 @@ export function updateTask(task_gid, params, callback) {
     task_gid = expandReferences(task_gid)(state);
     params = expandReferences(params)(state);
 
-    const { baseUrl, token } = state.configuration;
+    const { apiVersion, token } = state.configuration;
 
-    const url = `${baseUrl}/tasks/${task_gid}/`;
+    const url = `https://app.asana.com/api/${apiVersion}/tasks/${task_gid}/`;
 
     const config = {
       url,
@@ -181,9 +181,9 @@ export function createTask(params, callback) {
   return state => {
     params = expandReferences(params)(state);
 
-    const { baseUrl, token } = state.configuration;
+    const { apiVersion, token } = state.configuration;
 
-    const url = `${baseUrl}/tasks/`;
+    const url = `https://app.asana.com/api/${apiVersion}/tasks/`;
 
     const config = {
       url,
@@ -229,9 +229,9 @@ export function upsertTask(project_gid, params, callback) {
     project_gid = expandReferences(project_gid)(state);
     const { externalId, data } = expandReferences(params)(state);
 
-    const { baseUrl, token } = state.configuration;
+    const { apiVersion, token } = state.configuration;
 
-    const url = `${baseUrl}/projects/${project_gid}/tasks`;
+    const url = `https://app.asana.com/api/${apiVersion}/projects/${project_gid}/tasks`;
 
     const config = {
       url,
