@@ -8,8 +8,8 @@ Language Pack for connecting with Asana.
 
 ```json
 {
-  "baseUrl": "https://app.asana.com/api/1.0",
-  "token": "shhhhh"
+  "apiVersion": "1.0",
+  "token": "shhhhhhhh"
 }
 ```
 
@@ -53,9 +53,9 @@ createTask({
 
 ## Update a task or create a new one
 
-You can use a field name literal as `externalId` to match a specific task. If the task
-does not exist, a new one will be created.
-The first parameter in this function should be the `project_id`.
+You can use a field name literal as `externalId` to match a specific task. If
+the task does not exist, a new one will be created. The first parameter in this
+function should be the `project_id`.
 
 ```js
 upsertTask('12344', {
