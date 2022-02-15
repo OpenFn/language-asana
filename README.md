@@ -13,6 +13,18 @@ Language Pack for connecting with Asana.
 }
 ```
 
+### How to create an API token
+
+Using Asana's API requires having an API token. To generate that token, head to
+the [Asana developer console](https://app.asana.com/0/developer-console) and
+enter the **Personal access tokens** section.
+
+There you can click on **+New access token**. A prompt will be opened allowing
+you to give the token a name and then create it.
+
+_Note: Treat your PAT like you would with a password. Do not share it or display
+it online._
+
 ### Sample expression
 
 ## Find a single task of a given project using the task id.
