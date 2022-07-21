@@ -159,6 +159,10 @@ export function updateTask(task_gid, params, callback) {
         };
         if (callback) return callback(nextState);
         return nextState;
+      })
+      .catch(e => {
+        console.log('Asana says:', e.response.data);
+        throw e;
       });
   };
 }
@@ -200,6 +204,10 @@ export function createTask(params, callback) {
         };
         if (callback) return callback(nextState);
         return nextState;
+      })
+      .catch(e => {
+        console.log('Asana says:', e.response.data);
+        throw e;
       });
   };
 }
