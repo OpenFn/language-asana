@@ -4,14 +4,9 @@ Language Pack for connecting with Asana.
 
 ## Documentation
 
-### sample configuration
+### Configuration
 
-```json
-{
-  "apiVersion": "1.0",
-  "token": "shhhhhhhh"
-}
-```
+See `credential-schema.json` for required configuration.
 
 ### How to create an API token
 
