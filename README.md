@@ -1,4 +1,9 @@
-# language-asana [![Build Status](https://travis-ci.org/OpenFn/language-asana.svg?branch=master)](https://travis-ci.org/OpenFn/language-asana)
+# _⚠️ MOVED TO [OpenFn/adaptors](https://github.com/OpenFn/adaptors)! ⚠️_
+
+**N.B.: New versions are available at:
+https://github.com/OpenFn/adaptors/tree/main/packages/asana**
+
+# Language ASANA (Archived)
 
 Language Pack for connecting with Asana.
 
