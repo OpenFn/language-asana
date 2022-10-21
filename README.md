@@ -3,7 +3,7 @@
 **N.B.: New versions are available at:
 https://github.com/OpenFn/adaptors/tree/main/packages/asana**
 
-# Language ASANA (Archived)
+# Language Asana (Archived)
 
 Language Pack for connecting with Asana.
 
